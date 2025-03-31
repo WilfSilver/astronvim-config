@@ -29,11 +29,11 @@ return {
         },
       },
       -- null_ls.builtins.formatting.google_java_format,
-      null_ls.builtins.formatting.fourmolu,
+      -- null_ls.builtins.formatting.fourmolu,
       null_ls.builtins.formatting.black,
 
       -- Linting
-      null_ls.builtins.diagnostics.spellcheck,
+      -- null_ls.builtins.diagnostics.spellcheck,
       null_ls.builtins.diagnostics.vale,
     })
   end,

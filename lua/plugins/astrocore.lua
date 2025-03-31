@@ -49,6 +49,7 @@ return {
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = true, -- sets vim.opt.wrap
         colorcolumn = { 80 },
+        scrolloff = 10,
 
         foldmethod = "expr",
         foldexpr = "nvim_treesitter#foldexpr()",

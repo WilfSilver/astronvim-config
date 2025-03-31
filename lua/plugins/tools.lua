@@ -53,21 +53,25 @@ return {
   { -- Managed by community
     "mg979/vim-visual-multi",
     event = "User AstroFile",
-    opts = function(_, opts)
-      local maps = assert(opts.mappings)
-      maps.n["<C-S-j>"] = { "<C-u>call vm#commands#add_cursor_down(0, v:count1)<cr>", desc = "Add cursor below" }
-      maps.n["<C-S-k>"] = { "<C-u>call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
-      maps.n["<C-S-k>"] = { "<C-u>call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
-      maps.n["<C-LeftMouse>"] = { "<Plug>(VM-Mouse-Cursor)", desc = "Add cursor at mouse" }
-      maps.n["<C-RightMouse>"] = { "<Plug>(VM-Mouse-Word)", desc = "Add word at mouse" }
+    dependencies = {
+      "AstroNvim/astrocore",
+      ---@param opts AstroCoreOpts
+      opts = function(_, opts)
+        local maps = assert(opts.mappings)
+        maps.n["<C-S-j>"] = { ":call vm#commands#add_cursor_down(0, v:count1)<cr>", desc = "Add cursor below" }
+        maps.n["<C-S-k>"] = { ":call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
+        maps.n["<C-S-k>"] = { ":call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
+        maps.n["<C-LeftMouse>"] = { "<Plug>(VM-Mouse-Cursor)", desc = "Add cursor at mouse" }
+        maps.n["<C-RightMouse>"] = { "<Plug>(VM-Mouse-Word)", desc = "Add word at mouse" }
 
-      opts.options.g.VM_leader = "\\"
-      opts.options.g.VM_set_statusline = 0
-      opts.options.g.VM_theme = "ocean"
-      opts.options.g.VM_maps = {
-        ["Switch Mode"] = "v",
-      }
-    end,
+        opts.options.g.VM_leader = ",,"
+        opts.options.g.VM_set_statusline = 0
+        opts.options.g.VM_theme = "ocean"
+        opts.options.g.VM_maps = {
+          ["Switch Mode"] = "v",
+        }
+      end,
+    },
   },
 
   {
