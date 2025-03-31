@@ -1,0 +1,46 @@
+-- AstroCommunity: import any community modules here
+-- We import this file in `lazy_setup.lua` before the `plugins/` folder.
+-- This guarantees that the specs are processed before any user plugins.
+
+---@type LazySpec
+return {
+  "AstroNvim/astrocommunity",
+  { import = "astrocommunity.pack.astro" },
+  { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.go" },
+  { import = "astrocommunity.pack.haskell" },
+  { import = "astrocommunity.pack.helm" },
+  { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.json" },
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.mdx" },
+  { import = "astrocommunity.pack.nim" },
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.sql" },
+  { import = "astrocommunity.pack.svelte" },
+  -- { import = "astrocommunity.pack.tailwindcss" },
+  { import = "astrocommunity.pack.terraform" },
+  { import = "astrocommunity.pack.toml" },
+  { import = "astrocommunity.pack.typescript-all-in-one" },
+  { import = "astrocommunity.pack.xml" },
+  { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.zig" },
+  { import = "astrocommunity.programming-language-support.csv-vim" },
+  { import = "astrocommunity.programming-language-support.nvim-jqx" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
+  { import = "astrocommunity.recipes.neovide" },
+  { import = "astrocommunity.recipes.picker-lsp-mappings" },
+  { import = "astrocommunity.recipes.vscode" },
+  { import = "astrocommunity.register.nvim-neoclip-lua" },
+  { import = "astrocommunity.search.nvim-spectre" },
+  { import = "astrocommunity.snippet.nvim-snippets" },
+  { import = "astrocommunity.test.neotest" },
+  -- { import = "astrocommunity.utility.hover-nvim" },
+
+  -- { import = "astrocommunity.workflow.hardtime-nvim" },
+  { import = "astrocommunity.workflow.precognition-nvim" },
+}
