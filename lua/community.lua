@@ -42,5 +42,5 @@ return {
   -- { import = "astrocommunity.utility.hover-nvim" },
 
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  { import = "astrocommunity.workflow.precognition-nvim" },
+  -- { import = "astrocommunity.workflow.precognition-nvim" },
 }

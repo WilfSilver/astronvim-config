@@ -97,7 +97,7 @@ return {
         ["<C-/>"] = { "<Leader>/" },
 
         ["<Leader>lR"] = { "<cmd>LspRestart<cr>", desc = "Restart server" },
-        ["<Leader>x"] = { ":xa<cr>", desc = "Save all and quit" },
+        ["<Leader>X"] = { ":xa<cr>", desc = "Save all and quit" },
 
         ["<C-l>"] = { "<C-w>l" },
         ["<C-h>"] = { "<C-w>h" },

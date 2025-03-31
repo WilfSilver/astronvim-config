@@ -6,6 +6,7 @@ local util = require "util"
 return {
   {
     "ntpeters/vim-better-whitespace",
+    event = "User AstroFile",
     init = function()
       vim.g.strip_whitelines_at_eof = true
       vim.g.show_spaces_that_precede_tabs = true

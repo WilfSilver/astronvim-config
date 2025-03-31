@@ -24,6 +24,7 @@ return {
   { -- TODO: Don't show on "snacks_dashboard",
     "echasnovski/mini.map",
     branch = "stable",
+    event = "User AstroFile",
     config = function()
       local map = require "mini.map"
 

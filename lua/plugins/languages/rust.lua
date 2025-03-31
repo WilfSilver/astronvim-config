@@ -1,48 +1,40 @@
--- This is handled by the community
--- TODO: Add keybindings back :(
+local wk = require "which-key"
 
--- local wk = require "which-key"
---
--- ---@type LazySpec
--- return {
---   {
---     -- TODO: Further research
---     "Saecki/crates.nvim",
---     event = { "BufRead Cargo.toml" },
---     dependencies = { { "nvim-lua/plenary.nvim" } },
---     config = function()
---       require("crates").setup()
---
---       local crates = require "crates"
---       -- local opts = { silent = true }
---
---       wk.add {
---         { "<Leader>C", group = "Crates options" },
---         {
---           mode = "n",
---           { "<Leader>Ct", crates.toggle, desc = "Toggle" },
---           { "<Leader>Cr", crates.reload, desc = "Reload" },
---           { "<Leader>Cv", crates.show_versions_popup, desc = "Show Versions popup" },
---           { "<Leader>Cf", crates.show_features_popup, desc = "Show features popup" },
---           { "<Leader>Cd", crates.show_dependencies_popup, desc = "Show dependencies popup" },
---           { "<Leader>Cu", crates.update_crates, desc = "Update crate" },
---           { "<Leader>Ca", crates.update_all_crates, desc = "Update all crates" },
---           { "<Leader>CU", crates.upgrade_crates, desc = "Upgrade crate" },
---           { "<Leader>CA", crates.upgrade_all_crates, desc = "Upgrade all crates" },
---           { "<Leader>Ce", crates.expand_plain_crate_to_inline_table, desc = "Expand crate to table" },
---           { "<Leader>CE", crates.extract_crate_into_table, desc = "Extract crate into table" },
---           { "<Leader>CH", crates.open_homepage, desc = "Open Homepage" },
---           { "<Leader>CR", crates.open_repository, desc = "Open Repository" },
---           { "<Leader>CD", crates.open_documentation, desc = "Open Documentation" },
---           { "<Leader>CC", crates.open_crates_io, desc = "Open crates.io" },
---         },
---         {
---           mode = "v",
---
---           { "<Leader>Cu", crates.update_crates, desc = "" },
---           { "<Leader>CU", crates.upgrade_crates, desc = "" },
---         },
---       }
---     end,
---   },
--- }
+-- This is handled by the community
+
+---@type LazySpec
+return { -- Managed by the community but I wanted to add keybindings
+  "Saecki/crates.nvim",
+  config = function(_, opts)
+    local crates = require "crates"
+    crates.setup(opts)
+
+    wk.add {
+      { "<localleader>C", group = "Crates options" },
+      {
+        mode = "n",
+        { "<localleader>Ct", crates.toggle, desc = "Toggle" },
+        { "<localleader>Cr", crates.reload, desc = "Reload" },
+        { "<localleader>Cv", crates.show_versions_popup, desc = "Show Versions popup" },
+        { "<localleader>Cf", crates.show_features_popup, desc = "Show features popup" },
+        { "<localleader>Cd", crates.show_dependencies_popup, desc = "Show dependencies popup" },
+        { "<localleader>Cu", crates.update_crates, desc = "Update crate" },
+        { "<localleader>Ca", crates.update_all_crates, desc = "Update all crates" },
+        { "<localleader>CU", crates.upgrade_crates, desc = "Upgrade crate" },
+        { "<localleader>CA", crates.upgrade_all_crates, desc = "Upgrade all crates" },
+        { "<localleader>Ce", crates.expand_plain_crate_to_inline_table, desc = "Expand crate to table" },
+        { "<localleader>CE", crates.extract_crate_into_table, desc = "Extract crate into table" },
+        { "<localleader>CH", crates.open_homepage, desc = "Open Homepage" },
+        { "<localleader>CR", crates.open_repository, desc = "Open Repository" },
+        { "<localleader>CD", crates.open_documentation, desc = "Open Documentation" },
+        { "<localleader>CC", crates.open_crates_io, desc = "Open crates.io" },
+      },
+      {
+        mode = "v",
+
+        { "<localleader>Cu", crates.update_crates, desc = "" },
+        { "<localleader>CU", crates.upgrade_crates, desc = "" },
+      },
+    }
+  end,
+}
