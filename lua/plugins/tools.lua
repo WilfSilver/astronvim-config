@@ -5,6 +5,16 @@ local util = require "util"
 ---@type LazySpec
 return {
   {
+    -- Managed by Astrovim
+    "akinsho/toggleterm.nvim",
+    opts = function(_, opts)
+      opts.direction = "tab"
+      opts.open_mapping = "<C-t>"
+      opts.on_open = function() vim.cmd "setlocal scrollback=300" end
+    end,
+  },
+
+  {
     "ntpeters/vim-better-whitespace",
     event = "User AstroFile",
     init = function()
@@ -39,60 +49,25 @@ return {
     end,
   },
 
-  {
-    "tpope/vim-surround",
-    config = function()
-      -- Label the keys
-      wk.add({ desc = "Change surround from - to" }, { mode = "n", prefix = "cs" })
-      wk.add({ desc = "Tag (if html tag)" }, { mode = "n", prefix = "cst" })
-      wk.add({ desc = "Add Surround" }, { mode = "n", prefix = "ys" })
-      wk.add({ desc = "Remove Surround" }, { mode = "n", prefix = "ds" })
-      wk.add({ desc = "Surround Line" }, { mode = "n", prefix = "yss" })
-      wk.add({ desc = "Surround Inner..." }, { mode = "n", prefix = "ysi" })
-      wk.add({ desc = "Word" }, { mode = "n", prefix = "ysiw" })
-      -- keys.label("v", "Add Surround")
-      -- vim.o.timeoutlen = 500
-    end,
-  },
-
   -- TODO: Improve key bindings
-  {
+  { -- Managed by community
     "mg979/vim-visual-multi",
     event = "User AstroFile",
-    init = function()
-      vim.g.VM_leader = "\\"
-      vim.g.VM_theme = "ocean"
-      vim.g.VM_set_statusline = 0
+    opts = function(_, opts)
+      local maps = assert(opts.mappings)
+      maps.n["<C-S-j>"] = { "<C-u>call vm#commands#add_cursor_down(0, v:count1)<cr>", desc = "Add cursor below" }
+      maps.n["<C-S-k>"] = { "<C-u>call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
+      maps.n["<C-S-k>"] = { "<C-u>call vm#commands#add_cursor_up(0, v:count1)<cr>", desc = "Add cursor above" }
+      maps.n["<C-LeftMouse>"] = { "<Plug>(VM-Mouse-Cursor)", desc = "Add cursor at mouse" }
+      maps.n["<C-RightMouse>"] = { "<Plug>(VM-Mouse-Word)", desc = "Add word at mouse" }
 
-      -- For these maps to work, it needs to be configured in your terminal
-      -- emulator, see: Please see https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
-      vim.g.VM_maps = {
-        ["Add Cursor Down"] = "<C-S-j>", -- start selecting down
-        ["Add Cursor Up"] = "<C-S-k>", -- start selecting up
+      opts.options.g.VM_leader = "\\"
+      opts.options.g.VM_set_statusline = 0
+      opts.options.g.VM_theme = "ocean"
+      opts.options.g.VM_maps = {
         ["Switch Mode"] = "v",
       }
     end,
-    keys = {
-      { "<C-LeftMouse>", "<Plug>(VM-Mouse-Cursor)", desc = "Add cursor at mouse" },
-      { "<C-RightMouse>", "<Plug>(VM-Mouse-Word)", desc = "Add word at mouse" },
-    },
-  },
-
-  {
-    "ggandor/leap.nvim",
-    dependencies = {
-      "tpope/vim-repeat",
-    },
-    config = function() require("leap").add_default_mappings() end,
-  },
-
-  {
-    "ggandor/flit.nvim",
-    dependencies = {
-      "ggandor/leap.nvim",
-      "tpope/vim-repeat",
-    },
-    config = function() require("flit").setup() end,
   },
 
   {
@@ -119,89 +94,6 @@ return {
       }
     end,
     cmd = { "Codi", "CodiNew" },
-  },
-
-  -- Managed by community
-  -- TODO: Add back keys
-  -- {
-  --   "windwp/nvim-spectre",
-  --   config = function() require("spectre").setup() end,
-  --   keys = { -- TODO: Fix
-  --     ["<leader>fs"] = {
-  --       function() require("spectre").open_visual { select_word = true } end,
-  --       desc = "Search current word",
-  --     },
-  --     ["<leader>fw"] = {
-  --       function() require("spectre").open_visual { select_word = true } end,
-  --       desc = "Search current word",
-  --       mode = "n",
-  --     },
-  --     ["<leader>fp"] = {
-  --       function() require("spectre").open_file_search { select_word = true } end,
-  --       desc = "Search on current file",
-  --       mode = "n",
-  --     },
-  --     ["<Leader>f"] = { group = "Find", mode = "v" },
-  --     ["<Leader>fw"] = {
-  --       function() require("spectre").open_visual() end,
-  --       desc = "Search current word",
-  --       mode = "v",
-  --     },
-  --     ["<Leader>fp"] = {
-  --       function() require("spectre").open_file_search() end,
-  --       desc = "Search current file",
-  --       mode = "v",
-  --     },
-  --   },
-  -- },
-
-  -- TODO: Fix
-  {
-    "folke/trouble.nvim",
-    cmd = "Trouble",
-  },
-
-  {
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      local so = require "symbols-outline"
-      so.setup {
-        autofold_depth = 3,
-        keymaps = {
-          -- These keymaps can be a string or a table for multiple keys
-          close = { "<Esc>", "q" },
-          goto_location = "<Cr>",
-          focus_location = "o",
-          hover_symbol = "<C-space>",
-          toggle_preview = "K",
-          rename_symbol = "r",
-          code_actions = "a",
-          fold = "h",
-          unfold = "l",
-          fold_all = "W",
-          unfold_all = "E",
-          fold_reset = "R",
-        },
-      }
-    end,
-    keys = {
-      ["<Leader>lo"] = {
-        function() require("symbols-outline").toggle_outline() end,
-        mode = { "n" },
-        desc = "Open Outline",
-      },
-    },
-  },
-
-  {
-    "npxbr/glow.nvim",
-    ft = { "markdown" },
-    config = function()
-      require("glow").setup()
-      -- TODO: Bring this logic back
-
-      -- keys.add_key_in_file("n", "markdown", "P", { "<cmd>Glow<cr>", "Preview file" })
-    end,
   },
 
   { "echasnovski/mini.nvim", version = "*" },
@@ -285,21 +177,22 @@ return {
   -- Although snacks.picker is mostly used, this is just here for backup
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       defaults = {
         mappings = {
           i = {
             ["<C-j>"] = {
-              function() require("telescope.actions").move_selection_next() end,
+              function(i) require("telescope.actions").move_selection_next(i) end,
               type = "action",
               opts = { nowait = true, silent = true },
             },
             ["<C-k>"] = {
-              function() require("telescope.actions").move_selection_previous() end,
+              function(i) require("telescope.actions").move_selection_previous(i) end,
               type = "action",
               opts = { nowait = true, silent = true },
             },
-            ["<esc>"] = function() require("telescope.actions").close() end,
+            ["<esc>"] = function(i) require("telescope.actions").close(i) end,
           },
         },
       },

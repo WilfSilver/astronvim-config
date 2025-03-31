@@ -21,7 +21,7 @@ return {
     },
   },
 
-  { -- TODO: Don't show on "snacks_dashboard",
+  {
     "echasnovski/mini.map",
     branch = "stable",
     event = "User AstroFile",
@@ -60,7 +60,6 @@ return {
       end)
 
       -- Close the mini map when when the cursor is close to it
-      -- TODO: Fix bootup not working instantly after vert split...
       ac.add {
         { "CursorMoved", "CursorMovedI" },
         {
@@ -82,37 +81,6 @@ return {
               end
             end
           end,
-        },
-      }
-    end,
-  },
-
-  {
-    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    config = function()
-      local rainbow_delimiters = require "rainbow-delimiters"
-
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
-        },
-        query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
-        },
-        priority = {
-          [""] = 110,
-          lua = 210,
-        },
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
         },
       }
     end,

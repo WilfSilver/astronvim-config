@@ -45,18 +45,4 @@ return {
     },
     event = "BufRead",
   },
-  --
-  -- { "jxnblk/vim-mdx-js" },
-  --
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  --   ft = {
-  --     "javascript",
-  --     "typescript",
-  --     "typescriptreact",
-  --     "tsx",
-  --   },
-  --   opts = {},
-  -- },
 }

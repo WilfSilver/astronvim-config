@@ -10,16 +10,12 @@ return {
     event = "BufRead",
   },
 
-  {
-    "Pocco81/auto-save.nvim",
+  { -- Managed by community
+    "okuuva/auto-save.nvim",
     event = { "User AstroFile" },
-    config = function()
+    config = function(_, opts)
       local as = require "auto-save"
-      as.setup {
-        trigger_events = { "InsertLeave" },
-        enabled = true,
-        debounce_delay = 1000,
-      }
+      as.setup(opts)
 
       ac.add {
         { "FileType", "BufEnter" },
@@ -31,7 +27,7 @@ return {
       }
       wk.add {
         mode = "n",
-        { "<Leader>W", require("auto-save").toggle, desc = "Toggle Auto Save" },
+        { "<Leader>W", "<cmd>ASToggle<CR>", desc = "Toggle Auto Save" },
       }
     end,
   },

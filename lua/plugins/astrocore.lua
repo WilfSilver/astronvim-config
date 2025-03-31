@@ -1,5 +1,3 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -94,7 +92,11 @@ return {
           end,
           desc = "Save file",
         },
-        ["<C-/>"] = { "<Leader>/" },
+
+        -- TODO: Fix
+        ["<C-/>"] = { " /" },
+
+        ["<C-t>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
 
         ["<Leader>lR"] = { "<cmd>LspRestart<cr>", desc = "Restart server" },
         ["<Leader>X"] = { ":xa<cr>", desc = "Save all and quit" },
@@ -109,10 +111,6 @@ return {
         ["<C-p>"] = {
           function() require("snacks").picker.files {} end,
           desc = "Find file",
-        },
-        ["<M-S-p>"] = {
-          function() require("telescope").extensions.projects.projects() end,
-          desc = "Find projects",
         },
         ["<ESC><ESC>"] = { "<cmd>nohlsearch<CR>", desc = "Remove highlights" },
 
