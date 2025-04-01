@@ -95,17 +95,15 @@ return {
         },
 
         -- TODO: Fix
-        ["<C-/>"] = { " /" },
+        ["<C-/>"] = { "gcc", desc = "Toggle comment line" },
+
+        ["<C-up>"] = false,
+        ["<C-down>"] = false,
 
         ["<C-t>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
 
         ["<Leader>lR"] = { "<cmd>LspRestart<cr>", desc = "Restart server" },
         ["<Leader>X"] = { ":xa<cr>", desc = "Save all and quit" },
-
-        ["<C-l>"] = { "<C-w>l" },
-        ["<C-h>"] = { "<C-w>h" },
-        ["<C-j>"] = { "<C-w>j" },
-        ["<C-k>"] = { "<C-w>k" },
 
         ["<C-z>"] = "u",
         ["<C-a>"] = { "ggVG", desc = "Select all" },

@@ -87,49 +87,19 @@ return {
   },
 
   {
-    -- TODO: Swap with folke/edgy.nvim
-    -- TODO: Decide whether to keep
-    -- TODO: Add the better keymaps
-    "s1n7ax/nvim-window-picker",
-    version = "1.*",
-    config = function()
-      local picker = require "window-picker"
-      picker.setup {
-        autoselect_one = true,
-        include_current = false,
-        filter_rules = {
-          -- filter using buffer options
-          bo = {
-            -- if the file type is one of following, the window will be ignored
-            filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" },
-            -- if the buffer type is one of following, the window will be ignored
-            buftype = { "terminal" },
-          },
-        },
-        other_win_hl_color = "#e35e4f",
-      }
-    end,
-    keys = {
-      ["<Leader>p"] = {
-        function()
-          local picker = require "window-picker"
-          local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
-          vim.api.nvim_set_current_win(picked_window_id)
-        end,
-        modes = "n",
-        desc = "Pick a window",
-      },
-    },
-  },
-
-  {
     "nacro90/numb.nvim",
-    event = "BufRead",
+    event = "User AstroFile",
     config = function()
       require("numb").setup {
         show_numbers = true, -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
     end,
+  },
+
+  {
+    "v1nh1shungry/error-lens.nvim",
+    event = "User AstroFile",
+    opts = {},
   },
 }

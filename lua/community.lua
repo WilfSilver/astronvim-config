@@ -6,7 +6,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
-  { import = "astrocommunity.diagnostics.error-lens-nvim" },
+  -- { import = "astrocommunity.diagnostics.error-lens-nvim" }, -- Use alternative
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
@@ -50,6 +50,8 @@ return {
   { import = "astrocommunity.programming-language-support.csv-vim" },
   { import = "astrocommunity.programming-language-support.nvim-jqx" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
+  -- Why doth it be just that tad be slower :disappointed:
+  -- { import = "astrocommunity.recipes.auto-session-restore" },
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
   { import = "astrocommunity.recipes.vscode" },

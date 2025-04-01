@@ -34,7 +34,7 @@ return {
 
       -- Linting
       -- null_ls.builtins.diagnostics.spellcheck,
-      null_ls.builtins.diagnostics.vale,
+      -- null_ls.builtins.diagnostics.vale,
     })
   end,
 }
