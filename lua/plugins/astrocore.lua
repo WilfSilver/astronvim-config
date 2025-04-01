@@ -94,8 +94,15 @@ return {
           desc = "Save file",
         },
 
-        -- TODO: Fix
-        ["<C-/>"] = { "gcc", desc = "Toggle comment line" },
+        -- Mini.comment is managed by the community :)
+        ["<C-/>"] = {
+          function()
+            -- Gets the position of the cursor for the current window
+            local line = vim.fn.line "."
+            require("mini.comment").toggle_lines(line, line, {})
+          end,
+          desc = "Toggle comment line",
+        },
 
         ["<C-up>"] = false,
         ["<C-down>"] = false,
@@ -133,8 +140,24 @@ return {
       i = {
         ["<M-S-j>"] = { "<cmd>t.<CR>", desc = "Copy line down" },
         ["<M-S-k>"] = { "<cmd>t-<CR>", desc = "Copy line up" },
+        ["<C-/>"] = {
+          function()
+            -- Gets the position of the cursor for the current window
+            local line = vim.fn.line "."
+            require("mini.comment").toggle_lines(line, line, {})
+          end,
+          desc = "Toggle comment line",
+        },
       },
       v = {
+        ["<C-/>"] = {
+          function()
+            -- Gets the position of the cursor for the current window
+            require("mini.comment").toggle_lines(vim.fn.line "v", vim.fn.line ".", {})
+          end,
+          desc = "Toggle comment",
+        },
+
         ["<M-S-j>"] = { ":'<,'>t'<-<CR>gv", desc = "Copy selected lines down" },
         ["<M-S-k>"] = { ":'<,'>t'><CR>gv", desc = "Copy selected lines up" },
       },

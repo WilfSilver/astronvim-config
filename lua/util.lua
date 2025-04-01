@@ -50,6 +50,13 @@ function M.list_merge_into(into, from)
   end
 end
 
+function M.find(tbl, fn)
+  for v in M.list_iter(tbl) do
+    if fn(v) then return v end
+  end
+  return nil
+end
+
 function M.tbl_dump(o)
   if type(o) == "table" then
     local s = "{ "
