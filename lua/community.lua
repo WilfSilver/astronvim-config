@@ -59,7 +59,7 @@ return {
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
   { import = "astrocommunity.search.nvim-spectre" },
-  { import = "astrocommunity.snippet.nvim-snippets" },
+  -- { import = "astrocommunity.snippet.nvim-snippets" },
   { import = "astrocommunity.test.neotest" },
   { import = "astrocommunity.utility.hover-nvim" },
 
