@@ -5,10 +5,11 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+  -- TODO: set custom column values for different languages
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.bars-and-lines.vim-illuminate" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.comment.mini-comment" },
-  -- { import = "astrocommunity.diagnostics.error-lens-nvim" }, -- Use alternative
   -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.auto-save-nvim" },
@@ -20,6 +21,7 @@ return {
   { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.git.git-blame-nvim" },
+  { import = "astrocommunity.git.neogit" },
   { import = "astrocommunity.markdown-and-latex.markview-nvim" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.motion.flit-nvim" },
@@ -59,9 +61,10 @@ return {
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
   { import = "astrocommunity.search.nvim-spectre" },
-  -- { import = "astrocommunity.snippet.nvim-snippets" },
   { import = "astrocommunity.test.neotest" },
-  { import = "astrocommunity.utility.hover-nvim" },
+
+  -- Disabled due to somewhat buggy behaviour (sadness ik)
+  -- { import = "astrocommunity.utility.hover-nvim" },
 
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   -- { import = "astrocommunity.workflow.precognition-nvim" },

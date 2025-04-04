@@ -1,29 +1,25 @@
-local wk = require "which-key"
-
 ---@type LazySpec
 return {
-  { -- Managed by astrovim
+  { -- Managed by astronvim
     "lewis6991/gitsigns.nvim",
-    config = function(_, opts)
-      local gs = require "gitsigns"
-      gs.setup(opts)
+    opts = function(_, opts)
+      -- Setting keybindings work slightly differently to other functions
+      opts.on_attach = require("astrocore").patch_func(opts.on_attach, function(original_on_attach, bufnr)
+        original_on_attach(bufnr)
 
-      wk.add {
-        {
-          "<Leader>gp",
-          function() gs.nav_hunk("prev", { navigation_message = false }) end,
-          desc = "Preview Hunk",
-        },
-        { "<Leader>gr", gs.reset_hunk, desc = "Reset Hunk" },
-        { "<Leader>gR", gs.reset_buffer, desc = "Reset Buffer" },
-        { "<Leader>gs", gs.stage_hunk, desc = "Stage/Undo Stage Hunk" },
-        {
-          "<Leader>gj",
-          function() gs.nav_hunk("next", { navigation_message = false }) end,
-          desc = "Next Hunk",
-        },
-        { "<Leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
-      }
+        -- This is used by neogit for logs
+        vim.keymap.del("n", "<Leader>gl", { buffer = bufnr })
+
+        local astrocore = require "astrocore"
+        local prefix, maps = "<Leader>g", astrocore.empty_map_table()
+
+        maps.n[prefix .. "D"] =
+          { function() require("gitsigns").blame_line { full = true } end, desc = "View full Git blame" }
+
+        maps.n[prefix .. "L"] = { function() require("gitsigns").blame_line() end, desc = "View Git blame" }
+
+        astrocore.set_mappings(maps, { buffer = bufnr })
+      end)
     end,
   },
 
@@ -36,39 +32,46 @@ return {
     end,
   },
 
-  {
+  { -- Handled by the community mostly
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-      "nvim-telescope/telescope.nvim", -- optional
+      {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local maps = opts.mappings
+
+          local prefix = "<Leader>g"
+          -- This is also set by gitsigns (in astronvim config) for each buffer,
+          -- instead we are just gunna set it globally
+          maps.n[prefix] = { desc = require("astroui").get_icon("Git", 1, true) .. "Git" }
+
+          -- Disable community keybindings
+          maps.n[prefix .. "n"] = false
+          maps.n[prefix .. "nt"] = false
+          maps.n[prefix .. "nc"] = false
+          maps.n[prefix .. "nd"] = false
+          maps.n[prefix .. "nk"] = false
+
+          maps.n[prefix .. "n"] = { desc = require("astroui").get_icon("Neogit", 1, true) .. "Neogit" }
+          maps.n[prefix .. "B"] = {
+            function() require("neogit").open { "branch" } end,
+            desc = require("astroui").get_icon("Neogit", 1, true) .. "Branch options",
+          }
+          maps.n[prefix .. "f"] = {
+            function() require("neogit").open { kind = "auto" } end,
+            desc = require("astroui").get_icon("Neogit", 1, true) .. "Neogit",
+          }
+          maps.n[prefix .. "l"] = {
+            function() require("neogit").open { "log" } end,
+            desc = require("astroui").get_icon("Neogit", 1, true) .. "Git log",
+          }
+        end,
+      },
     },
-    event = "User AstroGitFile",
-    config = function(_, opts)
-      require("neogit").setup(opts)
-      wk.add {
-        { "<Leader>gB", function() require("neogit").open { "branch" } end, desc = "Branch options" },
-        { "<Leader>gf", function() require("neogit").open { kind = "auto" } end, desc = "NeoGit" },
-        { "<Leader>gl", function() require("neogit").open { "log" } end, desc = "Git log" },
-      }
-    end,
   },
 
   {
     "sindrets/diffview.nvim",
     event = "User AstroGitFile",
   },
-
-  -- {
-  -- 	"pwntester/octo.nvim",
-  -- 	event = "VimEnter",
-  -- 	requires = {
-  -- 		"nvim-lua/plenary.nvim",
-  -- 		"nvim-telescope/telescope.nvim",
-  -- 		"nvim-tree/nvim-web-devicons",
-  -- 	},
-  -- 	config = function()
-  -- 		require("octo").setup()
-  -- 	end,
-  -- },
 }

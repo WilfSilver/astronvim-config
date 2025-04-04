@@ -102,4 +102,6 @@ return {
     event = "User AstroFile",
     opts = {},
   },
+
+  { "nvim-tree/nvim-web-devicons", opts = {} },
 }

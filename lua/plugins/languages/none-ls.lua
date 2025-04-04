@@ -17,17 +17,17 @@ return {
       -- NOTE: All of these are found in the mason ensure_installed
 
       -- Formatters
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.biome.with {
-        args = {
-          "check",
-          "--apply-unsafe",
-          "--formatter-enabled=true",
-          "--organize-imports-enabled=true",
-          "--skip-errors",
-          "$FILENAME",
-        },
-      },
+      -- null_ls.builtins.formatting.stylua,
+      -- null_ls.builtins.formatting.biome.with {
+      --   args = {
+      --     "check",
+      --     "--apply-unsafe",
+      --     "--formatter-enabled=true",
+      --     "--organize-imports-enabled=true",
+      --     "--skip-errors",
+      --     "$FILENAME",
+      --   },
+      -- },
       -- null_ls.builtins.formatting.google_java_format,
       -- null_ls.builtins.formatting.fourmolu,
       null_ls.builtins.formatting.black,

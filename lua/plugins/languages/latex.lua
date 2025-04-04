@@ -1,15 +1,24 @@
 ---@type LazySpec
 return { -- Managed by community
   "lervag/vimtex",
-  init = function()
-    vim.g.vimtex_view_method = "zathura"
-    vim.g.vimtex_compiler_method = "tectonic"
-    vim.g.vimtex_compiler_progname = "nvr"
+  dependencies = {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      options = {
+        g = {
+          vimtex_view_method = "zathura",
+          vimtex_compiler_progname = "nvr",
 
-    vim.g.vimtex_compiler_method = "generic"
-    vim.g.vimtex_compiler_generic = {
-
-      command = "ls *.tex | entr -n -c tectonic /_ --synctex --keep-logs",
-    }
-  end,
+          vimtex_compiler_method = "generic",
+          vimtex_compiler_generic = {
+            -- This assumes that you have run
+            -- tectonic -X init
+            -- command = "tectonic -X watch",
+            command = "ls @tex | entr -nc tectonic /_ --synctex --keep-logs",
+          },
+        },
+      },
+    },
+  },
 }

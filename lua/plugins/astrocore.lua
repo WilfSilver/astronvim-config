@@ -51,7 +51,7 @@ return {
           spell = false, -- sets vim.opt.spell
           signcolumn = "yes", -- sets vim.opt.signcolumn to yes
           wrap = true, -- sets vim.opt.wrap
-          colorcolumn = { 80 },
+          -- colorcolumn = { 80 }, managed smartcolumn.nvim
           scrolloff = 10,
 
           foldmethod = "expr",
@@ -169,6 +169,10 @@ return {
           },
         },
         v = {
+          -- Keep selection when changing the indentation
+          [">"] = { ">gv" },
+          ["<"] = { "<gv" },
+
           ["<C-/>"] = {
             function()
               -- Gets the position of the cursor for the current window
