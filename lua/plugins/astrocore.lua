@@ -142,7 +142,6 @@ return {
           ["<C-z>"] = { "u", desc = "Undo" },
           ["<C-a>"] = { "ggVG", desc = "Select all" },
           ["<C-p>"] = opts.mappings.n["<Leader>ff"],
-          ["<ESC><ESC>"] = { "<cmd>nohlsearch<CR>", desc = "Remove highlights" },
 
           ["<M-S-j>"] = { "<cmd>t.<CR>", desc = "Copy line down" },
           ["<M-S-k>"] = { "<cmd>t-<CR>", desc = "Copy line up" },
