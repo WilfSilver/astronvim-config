@@ -143,6 +143,8 @@ return {
           ["<C-a>"] = { "ggVG", desc = "Select all" },
           ["<C-p>"] = opts.mappings.n["<Leader>ff"],
 
+          ["<M-j>"] = { "<cmd>m +1<CR>", desc = "Move line down" },
+          ["<M-k>"] = { "<cmd>m -2<CR>", desc = "Move line up" },
           ["<M-S-j>"] = { "<cmd>t.<CR>", desc = "Copy line down" },
           ["<M-S-k>"] = { "<cmd>t-<CR>", desc = "Copy line up" },
 
@@ -156,8 +158,11 @@ return {
           },
         },
         i = {
+          ["<M-j>"] = { "<cmd>m +1<CR>", desc = "Move line down" },
+          ["<M-k>"] = { "<cmd>m -2<CR>", desc = "Move line up" },
           ["<M-S-j>"] = { "<cmd>t.<CR>", desc = "Copy line down" },
           ["<M-S-k>"] = { "<cmd>t-<CR>", desc = "Copy line up" },
+
           ["<C-/>"] = {
             function()
               -- Gets the position of the cursor for the current window
@@ -180,6 +185,8 @@ return {
             desc = "Toggle comment",
           },
 
+          ["<M-j>"] = { ":'<,'>m '>+1<CR>gv", desc = "Move selected lines down" },
+          ["<M-k>"] = { ":'<,'>m '<-2<CR>gv", desc = "Move selected lines up" },
           ["<M-S-j>"] = { ":'<,'>t'<-<CR>gv", desc = "Copy selected lines down" },
           ["<M-S-k>"] = { ":'<,'>t'><CR>gv", desc = "Copy selected lines up" },
         },
