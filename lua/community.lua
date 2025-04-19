@@ -25,6 +25,7 @@ return {
   { import = "astrocommunity.markdown-and-latex.markview-nvim" },
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.motion.flit-nvim" },
+  { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.neovim-lua-development.helpview-nvim" },
   { import = "astrocommunity.pack.astro" },
