@@ -22,66 +22,20 @@ return {
   },
 
   {
-    "echasnovski/mini.map",
-    branch = "stable",
-    event = "User AstroFile",
-    config = function()
-      local map = require "mini.map"
-
-      map.setup {
-        integrations = {
-          map.gen_integration.builtin_search(),
-          map.gen_integration.diagnostic {
-            error = "DiagnosticFloatingError",
-            warn = "DiagnosticFloatingWarn",
-            info = "DiagnosticFloatingInfo",
-            hint = "DiagnosticFloatingHint",
-          },
+    "Isrothy/neominimap.nvim",
+    config = function() end,
+    init = function()
+      vim.g.neominimap = {
+        auto_enable = true,
+        layout = "split",
+        split = {
+          minimap_width = 15,
+          close_if_last_window = true,
         },
-        symbols = {
-          encode = map.gen_encode_symbols.dot "4x2",
-        },
-        window = {
-          focusable = true,
-          side = "right",
-          width = 10,
-          winblend = 0,
-          show_integration_count = false,
-        },
-      }
-
-      ac.on_files("*", function()
-        map.open()
-        vim.b.minimap_disable = false
-        vim.g.minimap_open = true
-      end, function()
-        map.close()
-        vim.b.minimap_disable = true
-      end)
-
-      -- Close the mini map when when the cursor is close to it
-      ac.add {
-        { "CursorMoved", "CursorMovedI" },
-        {
-          pattern = "*",
-          callback = function()
-            if not ac.is_in_sys_buffer() and not vim.b.minimap_disable then
-              local col = util.get_relative_cursor_pos()[2]
-
-              if col >= vim.o.columns - 25 then
-                if vim.g.minimap_open then
-                  map.close()
-                  vim.g.minimap_open = false
-                end
-              else
-                if not vim.g.minimap_open then
-                  vim.g.minimap_open = true
-                  map.open()
-                end
-              end
-            end
-          end,
-        },
+        click = { enable = true },
+        search = { enable = true },
+        mark = { enable = true },
+        buf_filter = function(bufnr) return require("astrocore.buffer").is_valid(bufnr) end,
       }
     end,
   },

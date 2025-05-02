@@ -61,7 +61,12 @@ return {
   { import = "astrocommunity.recipes.picker-lsp-mappings" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
+  -- Handled completely by custom, due to config requiring to be set in "init",
+  -- which this does not do
+  -- { import = "astrocommunity.split-and-window.neominimap-nvim" },
   { import = "astrocommunity.search.nvim-spectre" },
+  { import = "astrocommunity.terminal-integration.flatten-nvim" },
+  { import = "astrocommunity.terminal-integration.toggleterm-manager-nvim" },
   { import = "astrocommunity.test.neotest" },
 
   -- Disabled due to somewhat buggy behaviour (sadness ik)
