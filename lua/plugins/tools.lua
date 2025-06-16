@@ -178,7 +178,7 @@ return {
     },
   },
 
-  -- Although snacks.picker is mostly used, this is just here for backup
+  -- Although snacks is normally used, telescope is also used within AstroNvim
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },

@@ -1,6 +1,3 @@
-local ac = require "autocommands"
-local util = require "util"
-
 ---@type LazySpec
 return {
   {
@@ -24,20 +21,19 @@ return {
   {
     "Isrothy/neominimap.nvim",
     config = function() end,
-    init = function()
-      vim.g.neominimap = {
-        auto_enable = true,
-        layout = "split",
-        split = {
-          minimap_width = 15,
-          close_if_last_window = true,
-        },
-        click = { enable = true },
-        search = { enable = true },
-        mark = { enable = true },
-        buf_filter = function(bufnr) return require("astrocore.buffer").is_valid(bufnr) end,
-      }
-    end,
+    opts = {
+      auto_enable = true,
+      layout = "split",
+      split = {
+        minimap_width = 15,
+        close_if_last_window = true,
+      },
+      click = { enable = true },
+      search = { enable = true },
+      mark = { enable = true },
+      buf_filter = function(bufnr) return require("astrocore.buffer").is_valid(bufnr) end,
+    },
+    init = function(plugin) vim.g.neominimap = plugin.opts end,
   },
 
   {
@@ -58,4 +54,49 @@ return {
   },
 
   { "nvim-tree/nvim-web-devicons", opts = {} },
+
+  -- {
+  --   "folke/edgy.nvim",
+  --   opts = function(_, opts)
+  --     opts.animate = { enabled = false }
+  --     opts.left = {
+  --       {
+  --         title = "Files",
+  --         ft = "neo-tree",
+  --         filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end,
+  --         pinned = true,
+  --         open = "Neotree position=left filesystem",
+  --         size = { height = 0.5 },
+  --       },
+  --       {
+  --         title = "Buffers",
+  --         ft = "neo-tree",
+  --         filter = function(buf) return vim.b[buf].neo_tree_source == "buffers" end,
+  --         pinned = true,
+  --         collapsed = false,
+  --         open = "Neotree position=top buffers",
+  --       },
+  --       -- "neo-tree",
+  --     }
+  --
+  --     opts.right = {
+  --       {
+  --         ft = "aerial",
+  --         title = "Symbol Outline",
+  --         pinned = true,
+  --         open = function() require("aerial").open() end,
+  --         size = { width = 15 },
+  --       },
+  --       {
+  --         ft = "neominimap",
+  --         title = "Neominimap",
+  --         pinned = true,
+  --         open = function() require("neominimap.api").enable() end,
+  --         size = { width = 15 },
+  --       },
+  --     }
+  --
+  --     return opts
+  --   end,
+  -- },
 }
